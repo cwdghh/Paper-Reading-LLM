@@ -4,7 +4,7 @@
 Author             : 陈蔚 (weichen.cw@zju.edu.cn)
 Date               : 2024-08-17 14:46
 Last Modified By   : 陈蔚 (weichen.cw@zju.edu.cn)
-Last Modified Date : 2024-08-20 01:31
+Last Modified Date : 2024-08-20 13:28
 Description        : Arugments
 -------- 
 Copyright (c) 2024 Wei Chen. 
@@ -26,18 +26,9 @@ def get_args() -> Namespace:
     """
     parser = argparse.ArgumentParser(description='Paper Reading LLM Arguments.')
     parser.add_argument('--accessKey', '-a', type=str, default=None, help='DashScope API Key')
-    parser.add_argument('--useProxy',  '-p', action='store_true', help='Use proxy')
 
     args = parser.parse_args()
 
     assert args.accessKey is not None, 'Please set your DashScope API Key.'
-
-    if not args.useProxy:
-        global HTTP_PROXY, ALL_PROXY, NO_PROXY
-
-        print('No proxy is used.')
-        HTTP_PROXY  = ''
-        ALL_PROXY   = ''
-        NO_PROXY    = ''
 
     return args

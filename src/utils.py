@@ -4,7 +4,7 @@
 Author             : 陈蔚 (weichen.cw@zju.edu.cn)
 Date               : 2024-08-17 14:24
 Last Modified By   : 陈蔚 (weichen.cw@zju.edu.cn)
-Last Modified Date : 2024-08-20 01:15
+Last Modified Date : 2024-08-20 13:27
 Description        : Utils for the project.
 -------- 
 Copyright (c) 2024 Wei Chen. 
@@ -15,8 +15,7 @@ import os
 from contextlib import contextmanager
 from typing import Generator, List
 
-from src.config_and_variables import LOG_DIR
-from src.config_and_variables import HTTP_PROXY, ALL_PROXY, NO_PROXY
+from src.config_and_variables import LOG_DIR, USE_PROXY, HTTP_PROXY, ALL_PROXY, NO_PROXY
 
 
 @contextmanager
@@ -29,18 +28,22 @@ def proxy_context() -> Generator[None, None, None]:
         Enter/Exist context.
     """
     try:
-        print('Setting proxy...')
-        os.environ['http_proxy']    = HTTP_PROXY
-        os.environ['https_proxy']   = HTTP_PROXY
-        os.environ['all_proxy']     = ALL_PROXY
-        os.environ['no_proxy']      = NO_PROXY
+        if USE_PROXY:
+            print('Setting proxy...')
+            os.environ['http_proxy']    = HTTP_PROXY
+            os.environ['https_proxy']   = HTTP_PROXY
+            os.environ['all_proxy']     = ALL_PROXY
+            os.environ['no_proxy']      = NO_PROXY
+        else:
+            print('Not setting proxy...')
         yield
     finally:
-        print('Unsetting proxy...')
-        os.environ['http_proxy']    = ''
-        os.environ['https_proxy']   = ''
-        os.environ['all_proxy']     = ''
-        os.environ['no_proxy']      = ''
+        if USE_PROXY:
+            print('Unsetting proxy...')
+            del os.environ['http_proxy']
+            del os.environ['https_proxy']
+            del os.environ['all_proxy']
+            del os.environ['no_proxy']
 
 
 def append_message(messages: List[dict], role: str = None, content: str = None) -> None:

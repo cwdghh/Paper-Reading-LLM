@@ -2,7 +2,7 @@
  * @Author             : 陈蔚 (weichen.cw@zju.edu.cn)
  * @Date               : 2024-08-14 10:47
  * @Last Modified By   : 陈蔚 (weichen.cw@zju.edu.cn)
- * @Last Modified Date : 2024-08-20 01:51
+ * @Last Modified Date : 2024-08-20 13:31
  * @Description        : This is REAME file for paper reading LLM.
  * -------- 
  * Copyright (c) 2024 Wei Chen. 
@@ -38,20 +38,21 @@ pip install -r requirements.txt
 First, open [Alibaba Cloud website](https://help.aliyun.com/zh/model-studio/developer-reference/qwen-long-api), create account and get your `qwen-long` access key.
 
 Second, open `src/config_and_variable.py` file and modify the following variables:
-- `*_PROXY`: Set to your proxy if needed, otherwise set to `''`;
+- `USE_PROXY`: Set to `True` if you need to use proxy;
+- `*_PROXY`: Set to your proxy if needed;
 - `ENDPOINT`: The endpoint for your LLM service provider;
 - `MODEL_TYPE`: The model you want to use.
 
 Finally, Run the following command to start the interface in a web browser:
 
 ```bash
-python webapp.py --accessKey <your_qwen_long_access_key>  --useProxy
+python webapp.py --accessKey <your_qwen_long_access_key>
 ```
 
 Or in the terminal:
 
 ```bash
-python main.py --accessKey <your_qwen_long_access_key> --useProxy
+python main.py --accessKey <your_qwen_long_access_key>
 ```
 
 Arguments:

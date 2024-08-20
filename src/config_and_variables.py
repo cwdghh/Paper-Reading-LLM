@@ -4,7 +4,7 @@
 Author             : 陈蔚 (weichen.cw@zju.edu.cn)
 Date               : 2024-08-17 14:23
 Last Modified By   : 陈蔚 (weichen.cw@zju.edu.cn)
-Last Modified Date : 2024-08-20 01:08
+Last Modified Date : 2024-08-20 13:30
 Description        : Configuration and global variables.
 -------- 
 Copyright (c) 2024 Wei Chen. 
@@ -12,6 +12,7 @@ Copyright (c) 2024 Wei Chen.
 
 # 1. Proxy Configuration
 
+USE_PROXY   = False
 HTTP_PROXY  = "http://127.0.0.1:1087"       # HTTP proxy
 ALL_PROXY   = "http://127.0.0.1:1086"       # All proxy
 NO_PROXY    = "localhost, 127.0.0.1, ::1"   # No proxy, no need to be changed. You should set no proxy to use the proxy with Gradio
