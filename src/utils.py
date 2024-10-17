@@ -4,7 +4,7 @@
 Author             : 陈蔚 (weichen.cw@zju.edu.cn)
 Date               : 2024-08-17 14:24
 Last Modified By   : 陈蔚 (weichen.cw@zju.edu.cn)
-Last Modified Date : 2024-08-20 13:27
+Last Modified Date : 2024-10-17 11:49
 Description        : Utils for the project.
 -------- 
 Copyright (c) 2024 Wei Chen. 
@@ -44,6 +44,24 @@ def proxy_context() -> Generator[None, None, None]:
             del os.environ['https_proxy']
             del os.environ['all_proxy']
             del os.environ['no_proxy']
+
+
+def remove_proxy() -> None:
+    # Remove proxy first, please specify in `src/config_and_variables.py` if needed.
+    if 'http_proxy' in os.environ:
+        del os.environ['http_proxy']
+    
+    if 'https_proxy' in os.environ:
+        del os.environ['https_proxy']
+
+    if 'all_proxy' in os.environ:
+        del os.environ['all_proxy']
+
+    if 'ALL_PROXY' in os.environ:
+        del os.environ['ALL_PROXY']
+        
+    if 'no_proxy' in os.environ:
+        del os.environ['no_proxy']
 
 
 def append_message(messages: List[dict], role: str = None, content: str = None) -> None:

@@ -2,7 +2,7 @@
  * @Author             : 陈蔚 (weichen.cw@zju.edu.cn)
  * @Date               : 2024-08-14 10:47
  * @Last Modified By   : 陈蔚 (weichen.cw@zju.edu.cn)
- * @Last Modified Date : 2024-08-20 13:31
+ * @Last Modified Date : 2024-10-17 13:10
  * @Description        : This is REAME file for paper reading LLM.
  * -------- 
  * Copyright (c) 2024 Wei Chen. 
@@ -22,22 +22,25 @@ We use `qwen-long` here for its low cost, but you could alternatively use other 
 
 1. Clone the repository and install the required packages:
 
-
 ```bash
 conda create -n paper-reading-llm python=3.11
 pip install -r requirements.txt
 ```
 
 **Required packages:**
+
 - `feedparser`: Parse ArXiv feed;
 - `openai`: Interact with OpenAI API;
 - `gradio`: Construct the interface;
+
+> **Note**: `gradio` is currently in rapid development, so newer or older versions might not be compatible with this project (We are currently using Gradio 5.1.0). If you're using Gradio lower than 5.0.0, you can consider using v0.0.1 of this repository.
 
 ## 2. Usage
 
 First, open [Alibaba Cloud website](https://help.aliyun.com/zh/model-studio/developer-reference/qwen-long-api), create account and get your `qwen-long` access key.
 
 Second, open `src/config_and_variable.py` file and modify the following variables:
+
 - `USE_PROXY`: Set to `True` if you need to use proxy;
 - `*_PROXY`: Set to your proxy if needed;
 - `ENDPOINT`: The endpoint for your LLM service provider;
@@ -56,6 +59,7 @@ python main.py --accessKey <your_qwen_long_access_key>
 ```
 
 Arguments:
+
 - `accessKey`: The access key for `qwen-long`, e.g. `sk-xxxxxxxxxx`;
 - `useProxy`: Whether to use proxy.
 
@@ -66,7 +70,7 @@ If you use Web APP, the interface will be available at `http://localhost:7860`. 
 I'm unfamiliar with Gradio, so I use the most naive way to implement the functions. You need to type some keywords in the chat box to perform the following functions:
 
 - **Chat**: You could directly chat with LLM using the interface;
-- **Download from ArXiv**: Download papers from ArXiv. You could specify a paper using an arxiv id in the format `arxiv:<arxiv_id>`, e.g. 'arxiv:2311.11100';
+- **Download from ArXiv**: Download papers from ArXiv. You could specify a paper using an ArXiv ID in the format `arxiv:<arxiv_id>`, e.g. 'arxiv:2311.11100';
 - **Upload from disk**: Upload papers from disk. You could specify a local paper using a file path in the format `file:<your_file_path>`, e.g. 'file:~/papr.pdf';
 - **Delete from Cloud**: Delete papers from cloud. You could delete a paper using a file name in the format `delete:<arxiv_id/file_name>`, e.g. 'delete:2311.11100.pdf' or 'delete:paper.pdf';
 
@@ -94,6 +98,7 @@ After downloading & uploading, you could chat with LLM about the paper.
 ```
 
 **File Contents:**
+
 - `README.md`: This is the README file for paper reading LLM;
 - `main.py`: Configuration file for the interface;
 - `webapp.py`: The main interface file;
@@ -108,16 +113,23 @@ After downloading & uploading, you could chat with LLM about the paper.
 TO BE COMPLETED.
 
 If you have any questions, please feel free to contact me.
-> **Email**: weichen.cw@zju.edu.cn
+> **Email**: [weichen.cw@zju.edu.cn](weichen.cw@zju.edu.cn).
 
-**Question**: 
+**Question**: How to solve permission not granted error on Mac?
 
-**Answer**: 
+**Answer**: ...
 
-## 5. Acknowledgment
+## 5. To-do List
+
+- [ ] Upgrade to newer version of Gradio.
+- [ ] Add logging history.
+- [ ] Change the behavior when 'clear'.
+
+## Acknowledgment
 
 The following resources inspire this project:
+
 - [Qwen-Long API](https://help.aliyun.com/zh/model-studio/developer-reference/qwen-long-api): Thanks for the cheap but powerful LLM;
-- [Arxiv API](https://info.arxiv.org/help/api/index.html): Thank you to arXiv for use of its open access interoperability.;
+- [ArXiv API](https://info.arxiv.org/help/api/index.html): Thank you to arXiv for use of its open access interoperability.;
 - [Gradio](https://www.gradio.app/): Thanks for the easy-to-use interface construction.
 - [How to Read a Paper](https://www.cs.cmu.edu/~zhihaoj2/papers/HowtoReadPaper.pdf): Thanks for the paper reading guide.
